@@ -3,10 +3,10 @@ const { pool } = require('../config/db');
 const bcrypt = require('bcryptjs');
 
 async function seedRoles() {
-  const [rows] = await pool.query('SELECT COUNT(*) AS cnt FROM rol');
+  const [rows] = await pool.query('SELECT COUNT(*) AS cnt FROM Rol');
   if (rows[0].cnt === 0) {
     await pool.query(
-      `INSERT INTO rol (Nombre, Descripcion) VALUES
+      `INSERT INTO Rol (Nombre, Descripcion) VALUES
         ('admin', 'Administrador del sistema'),
         ('empleado', 'Empleado de farmacia')`
     );
@@ -19,7 +19,7 @@ async function seedAdmin() {
   const [users] = await pool.query(`SELECT * FROM usuario WHERE Usuario = 'admin'`);
   if (users.length === 0) {
     // find ID for 'admin' role
-    const [roles] = await pool.query("SELECT ID FROM rol WHERE Nombre = 'admin'");
+    const [roles] = await pool.query("SELECT ID FROM Rol WHERE Nombre = 'admin'");
     if (roles.length === 0) {
       console.warn('No admin role found; skipping admin user seed');
       return;
@@ -33,7 +33,7 @@ async function seedAdmin() {
     const personalId = p.insertId;
     const hash = await bcrypt.hash('admin', 10);
     await pool.query(
-      `INSERT INTO usuario (Usuario, Contraseña, PersonalID, RolID) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO usuario (Usuario, contrasena, PersonalID, RolID) VALUES (?, ?, ?, ?)`,
       ['admin', hash, personalId, adminRoleId]
     );
     console.log('<< Admin user seeded: admin/admin >>');

@@ -15,7 +15,7 @@ async function getAllBitacora() {
   const [rows] = await pool.query(`
     SELECT b.ID, b.Fecha, b.Hora, b.Accion, b.UsuarioID, u.Usuario as nombre
     FROM Bitacora b
-    LEFT JOIN Usuario u ON b.UsuarioID = u.ID
+    LEFT JOIN usuario u ON b.UsuarioID = u.ID
     ORDER BY b.Fecha DESC, b.Hora DESC
   `);
   return rows;
