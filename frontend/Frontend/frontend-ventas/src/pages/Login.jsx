@@ -54,7 +54,13 @@ const Login = () => {
           <label className="login-label">Contraseña</label>
           <div className="login-input-group">
             <span className="login-icon"><i className="fa fa-lock"></i></span>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="" />
+            <input 
+              type="password" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)} 
+              placeholder="" 
+              autoComplete="current-password"
+            />
           </div>
           <div className="login-links-row">
             <a href="#" className="login-link" onClick={e => {e.preventDefault(); navigate('/olvide-contrasena')}}>Recuperar contraseña</a>

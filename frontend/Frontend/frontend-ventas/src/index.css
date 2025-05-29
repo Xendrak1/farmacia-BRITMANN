@@ -1,4 +1,12 @@
 @import './App.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'admin-lte/dist/css/adminlte.min.css';
+@import 'admin-lte/plugins/fontawesome-free/css/all.min.css';
+
+/* Tus estilos personalizados aquí */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
